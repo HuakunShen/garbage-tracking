@@ -29,25 +29,26 @@ description: A community-maintained database of how software wastes your disk an
 
 The skill teaches your AI assistant to find the software installed on your machine, look each one up in this database, measure the damage with `du` / `spacelens` / `ps`, and clean up **only after confirming with you**.
 
-### 1. Clone the repository
+### 1. One command
 
 ```bash
-git clone https://github.com/HuakunShen/garbage-tracking.git
+npx skills add HuakunShen/garbage-tracking.git
 ```
 
-### 2. Copy the skill into your agent's skills directory
+The [skills CLI](https://skills.sh) detects the agents installed on your machine, copies the skill folders into the right skills directories, and keeps them named `garbage-tracker` / `garbage-tracker-add-app`.
 
-```bash
-cp -r garbage-tracking/skills/garbage-tracker ~/.agents/skills/
-```
+<Callout title="Prefer installing manually?">
+  Clone the repo and copy the skill folder yourself:
 
-| Agent | Skills directory |
-| ----- | ---------------- |
-| ZCode and agents following the `.agents` convention | `~/.agents/skills/` |
-| Claude Code | `~/.claude/skills/` |
-| Anything else | wherever your agent loads `SKILL.md` folders from |
+  ```bash
+  git clone https://github.com/HuakunShen/garbage-tracking.git
+  cp -r garbage-tracking/skills/garbage-tracker ~/.agents/skills/
+  ```
 
-### 3. Ask your AI to run a check
+  Skills directories by agent: `~/.agents/skills/` (ZCode and agents following the `.agents` convention), `~/.claude/skills/` (Claude Code) — wherever your agent loads `SKILL.md` folders from.
+</Callout>
+
+### 2. Ask your AI to run a check
 
 ```text
 Use the garbage-tracker skill: check my disk for known garbage,

@@ -30,7 +30,13 @@ Which Apps are included? Look directly at the [`apps/`](apps/) directory; for wh
 
 `skills/garbage-tracker/` is a skill that can be installed directly into AI coding tools: once installed, ask the agent to "help me clean up disk garbage / investigate memory usage", and it will read the dossiers in this repo, run measurements on your machine (`du`, `ps`, etc.; if the spacelens scanning tool is installed locally, its read-only scanning commands are preferred), produce a list sorted by reclaimable space, and **only act after getting your confirmation dossier by dossier**; new findings on your machine will be channeled into PRs to this repo.
 
-Installation:
+Installation (with the [skills CLI](https://skills.sh) — it detects your installed agents and copies the skill into the right directory):
+
+```sh
+npx skills add HuakunShen/garbage-tracking.git
+```
+
+Manual alternative:
 
 ```sh
 # 1. Clone this repo (the dossier database must be on your machine; the skill relies on it)
