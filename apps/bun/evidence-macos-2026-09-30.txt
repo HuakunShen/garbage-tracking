@@ -1,0 +1,12 @@
+Bun dossier on-machine verification log (2026-09-30, read-only)
+
+Raw scan JSON: see evidence-macos-2026-09-30.json.
+
+- `du -sh ~/.bun` → **6.8G**; `du -sh ~/.bun/*` → install 4.7G, build-cache 2.0G, bin 59M, _bun 48K
+- `du -sh ~/.bun/install/*` → cache **4.2G**, global **527M**
+- `du -sh ~/.bun/build-cache/*` → webkit-…-arm64-debug-asan **1.3G**, webkit-…-arm64 **642M**, tarballs **95M**, nodejs-headers-24.3.0 **1.5M**
+- `ls ~/.bun/install/cache | wc -l` → **5,171** entries
+- `ls ~/.bun/build-cache/tarballs` → C dependency source tarballs such as boringssl/brotli/cares/libarchive/libjpeg-turbo/libwebp (points to Bun source builds)
+- `bun --version` → 1.4.2; `bun pm --help` → lists `bun pm cache` (prints the cache path) and `bun pm cache rm` (clear the cache)
+- `ps aux | grep '[b]un '` → no resident bun process
+- Spot-checked `stat` inodes of cache and global-install files → links=1 (the two are not hard-link shared; the hard-link policy described in Bun's docs was not observed on this machine — unverified)

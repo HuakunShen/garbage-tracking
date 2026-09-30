@@ -1,0 +1,66 @@
+---
+import { render, type CollectionEntry } from "astro:content";
+import { Docs } from "@/components/docs";
+import defaultMdxComponents from "fumadocs-ui/mdx";
+import MdxLink, { makeMdxLink } from "@/components/mdx-link";
+import "@/styles/global.css";
+import { source } from "@/lib/source";
+import { getPageImageUrl } from "@/lib/shared";
+import Layout from "@/components/layout.astro";
+import type { TOCItemType } from "fumadocs-core/toc";
+
+type PageEntry = CollectionEntry<"docs"> | CollectionEntry<"apps">;
+
+interface Props {
+  page: PageEntry;
+}
+
+export async function getStaticPaths() {
+  return source.getPages().map((page) => ({
+    params: { slug: page.slugs.length > 0 ? page.slugs.join("/") : undefined },
+    props: { page: page.data._raw },
+  }));
+}
+
+const { page } = Astro.props;
+const { Content, headings } = await render(page);
+const slugs = typeof Astro.params.slug === "string" ? Astro.params.slug.split("/") : [];
+const docsPage = source.getPage(slugs)!;
+const image = getPageImageUrl(docsPage).url;
+const pageSlug = slugs.join("/");
+const Anchor = makeMdxLink(pageSlug);
+// App dossiers repeat the frontmatter title as a markdown H1; the page header
+// already renders it, so hide the duplicate one in the body.
+const isAppDossier = pageSlug.startsWith("apps");
+
+const toc: TOCItemType[] = headings.map((heading) => ({
+  depth: heading.depth,
+  title: heading.text,
+  url: "#" + heading.slug,
+}));
+---
+
+<Layout>
+  <title>{page.data.title}</title>
+  <meta name="title" content={page.data.title} />
+  <meta name="description" content={page.data.description} />
+  <meta property="og:image" content={image} />
+  <Docs
+    tree={source.getPageTree()}
+    pathname={Astro.url.pathname}
+    params={Astro.params}
+    page={{ toc }}
+    client:load
+  >
+    <h1 class="font-semibold text-3xl">{page.data.title}</h1>
+    <p class="text-lg text-fd-muted-foreground mb-8">{page.data.description}</p>
+    <div class:list={["prose flex-1", { "app-dossier": isAppDossier }]}>
+      <Content
+        components={{
+          ...defaultMdxComponents,
+          a: Anchor,
+        }}
+      />
+    </div>
+  </Docs>
+</Layout>

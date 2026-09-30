@@ -1,0 +1,5 @@
+VS Code evidence sources (macOS, 2026-09-30)
+
+- Scan evidence (JSON): sizes of the five subdirectories under `Application Support/Code`; records of the codex app-server process / the dual runtime.node inside the bundle.
+- Research files: part2-library.md (section 4, VS Code 5.3G breakdown; agent-host/sdk-cache containing 245M of Claude Agent SDK; section 8, large-file list); part4-editor-extensions-and-duplicate-binaries.md (section 3, `~/.vscode/extensions` 2.5G with two coexisting claude-code versions; section 5, claude binary inventory).
+- On-machine re-check (2026-09-30, all read-only): `du -sh` measured the whole Code tree at 5.1G plus each subdirectory; `ls -lahS` measured the CachedExtensionVSIXs 776M detail; `ls -la` measured the exact byte sizes of the two runtime.node copies; `ps aux` re-checked 22 processes / 2.7 GB RSS; `cat ~/.vscode/extensions/.obsolete` confirmed the old-version cleanup mechanism exists.

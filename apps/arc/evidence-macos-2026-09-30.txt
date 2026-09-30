@@ -1,0 +1,6 @@
+Arc evidence sources (macOS, 2026-09-30)
+
+- Scan evidence (JSON): `~/Library/Caches/Arc/User Data` 1.8 GB (Default profile, rebuildable browser cache), `~/Library/Application Support/Arc/User Data` 1.4 GB (contains user data, not counted as reclaimable); process tree 21 processes / 3.68 GB RSS, 12 Renderers totaling 2.58 GB (alive 5m–1h21m), main process 612 MB; "second place in the on-machine RSS ranking, tied with VS Code".
+- Research files: part2-library.md (section 5, top level of `~/Library/Caches`: Arc 1.5G, Chrome cache `Caches/Google` 817M; section 1, App Support top level: Arc 1.5G).
+- On-machine re-check (2026-09-30, all read-only): `du -sh` measured `Caches/Arc/User Data` 1.7G (Default/Cache 1.2G + Default/Code Cache 571M), `App Support/Arc/User Data` 1.4G (Default/Service Worker 1.0G, IndexedDB 65M, Extensions 46M, Local Storage 25M, History 22M, Favicons 10M); `ps -axo pid,ppid,rss,etime,command` re-checked the Arc tree: 21 processes / 5.81 GB RSS, main process 593 MB (alive 2h03m), largest helper 1488 MB (alive 38m); `ps --type=` breakdown: 15 renderer + 4 utility + 1 gpu.
+- Web search (2026-09-30): Arc maintenance mode / Dia / Atlassian acquisition (superchargebrowser.com, androidauthority.com).

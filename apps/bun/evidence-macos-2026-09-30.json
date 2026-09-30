@@ -1,0 +1,22 @@
+[
+ {
+  "app": "bun",
+  "memoryNotes": [],
+  "paths": [
+   { "path": "/Users/hk/.bun/install/cache", "size": "4.2 GB" },
+   { "path": "/Users/hk/.bun/build-cache", "size": "2.0 GB" },
+   { "path": "/Users/hk/.bun/install/global", "size": "527 MB" }
+  ],
+  "why": "Total 6.75 GiB (7,081,804 KiB): the 4.2G package cache grows without bound; the 2.0G build cache even retains WebKit's arm64-debug-asan debug build (1.3G) and the regular debug build (642M) — pure development intermediates."
+ },
+ {
+  "app": "bun",
+  "memoryNotes": [],
+  "paths": [
+   { "path": "/Users/hk/.bun/install/cache", "size": "4.2G" },
+   { "path": "/Users/hk/.bun/build-cache", "size": "2.0G" },
+   { "path": "/Users/hk/.bun/install/global", "size": "527M" }
+  ],
+  "why": "~/.bun totals 6.8G, of which the 4.2G download cache + 2.0G build cache are fully re-downloadable/rebuildable — pure cache accumulation; the actually essential bin is only 59M."
+ }
+]

@@ -1,0 +1,39 @@
+# ZCode workspace file-search ignore rules (.zcodeignore)
+# Syntax is identical to .gitignore; it only affects ZCode's @ file candidates /
+# Command Center / file tree search,
+# and does not affect file tree browsing, uploads, or Agent file access.
+# Changes to .gitignore are not automatically synced into this file;
+# use "Sync from .gitignore" on the settings page.
+
+
+# ===== ↑ Synced from .gitignore ("Sync from .gitignore" only rewrites the part above) =====
+.git/
+.hg/
+.svn/
+node_modules/
+bower_components/
+jspm_packages/
+__pycache__/
+site-packages/
+venv/
+coverage/
+htmlcov/
+lcov-report/
+cmakefiles/
+cmake-build-*/
+bazel-*/
+pods/
+deriveddata/
+storybook-static/
+playwright-report/
+test-results/
+allure-results/
+allure-report/
+cdk.out/
+*.egg-info/
+*.dist-info/
+eggs/
+pip-wheel-metadata/
+wheels/
+# ----- ↑ ZCode default exclusion rules (custom rules go below this line; they are not touched by sync/restore) -----
+# Custom rules go below (this hint line may be deleted)

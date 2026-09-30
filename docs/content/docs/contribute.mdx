@@ -1,0 +1,24 @@
+---
+title: Contributing
+description: Evidence first, then an entry — how to add or improve dossiers in the database.
+---
+
+The database lives in the repo's [`apps/` directory](https://github.com/HuakunShen/garbage-tracking/tree/main/apps): **one folder per App, one `index.md` per dossier**, plus optional evidence files next to it. This site renders that directory directly, so a merged PR is a live page.
+
+## The one hard rule
+
+**Evidence first, then an entry.** All sizes, paths, and process names must come from measurements on your own machine — copying numbers or citing "I read online" is not contributing.
+
+## PR flow, in short
+
+1. Copy the entry template from the [App Database Guide](./apps) into `apps/<slug>/index.md` (slug in lowercase kebab-case).
+2. Measure everything yourself: `du -ck` or `du -sh` for disk (state which), `ps aux` / `ps -eo rss,comm` for memory (sum per process group, note the sampling time).
+3. Put raw output into `apps/<slug>/evidence-<os>-<date>.txt` when it is long, and reference it from the dossier.
+4. Fill the Windows / Linux sections **only with paths you measured on that OS** — never port macOS conclusions over.
+5. Classify every path into **Safe / Caution / Do not delete**, and describe mechanisms rather than providing deletion one-liners.
+
+The full process, field-by-field schema, and review checklist live in the repo's [CONTRIBUTING.md](https://github.com/HuakunShen/garbage-tracking/blob/main/CONTRIBUTING.md).
+
+<Callout title="Describe, don't delete">
+  Entries never ship one-click deletion scripts. Paths and rationale go through the garbage-tracker skill's per-dossier confirmation flow — the AI proposes, the user decides.
+</Callout>

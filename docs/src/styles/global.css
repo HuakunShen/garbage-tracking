@@ -1,0 +1,26 @@
+@import 'tailwindcss';
+@import 'fumadocs-ui/css/neutral.css';
+@import 'fumadocs-ui/css/preset.css';
+
+html {
+  scrollbar-gutter: stable;
+}
+
+html > body[data-scroll-locked] {
+  margin-right: 0px !important;
+  --removed-body-scroll-bar-size: 0px !important;
+}
+
+/* Warm amber accent on the dark theme — the "disk cleanup" look. */
+.dark {
+  --color-fd-primary: oklch(0.82 0.13 75);
+  --color-fd-ring: oklch(0.82 0.13 75);
+  --color-fd-accent: oklch(0.3 0.045 70);
+  --color-fd-accent-foreground: oklch(0.92 0.06 85);
+}
+
+/* App dossiers open with a page header (title + description); the markdown
+   body repeats it as an H1, which would render twice. */
+.app-dossier > h1:first-of-type {
+  display: none;
+}

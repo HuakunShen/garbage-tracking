@@ -1,0 +1,10 @@
+Xross evidence sources (macOS, 2026-09-30)
+
+- On-machine scan evidence (provided by the ask): 5 `.before-*` paths with per-path `du -sk` measured KiB, `memoryNotes: []`, mechanism description ("manually copies the whole .app as a backup before every code change and never cleans up").
+- Re-check commands in this session (2026-09-30, read-only):
+  - `du -sk /Users/hk/Applications/Xross.before-*.app` → 456,876 / 496,696 / 468,100 / 456,472 / 457,052 KiB, matching the scan evidence item by item, totaling 2,335,196 KiB
+  - `du -sk /Users/hk/Applications/Xross.app /Users/hk/Applications/XrossSSHPoc.app` → 496,784 / 15,888 KiB
+  - `ls -ld /Users/hk/Applications/Xross*.app` → directory timestamps of the 5 copies and the current version (mostly 2026-09-10/09-11)
+  - `plutil -p /Users/hk/Applications/Xross.app/Contents/Info.plist` → bundle id `one.xross.app`, CFBundleShortVersionString 1.0.71
+  - `ps aux | grep -i xross` → no match (app not running)
+- Research documents (absolute paths, read in full in this session): `/Volumes/Portable2TB/ExtDev/content-making/projects/AI-resource-analysis/research/part3-applications.md` §7 (7 Xross `du -sk` measurements totaling 2,847,868 KiB; 5 stale copies 2,335,196 KiB ≈ 2.23 GiB; "manually copies the app as a backup before every code change, never cleaned up"), §10 grand total (5 stale copies counted as 3.05 GiB of pure waste); `part1-home-dotfiles.md` §2 (`.xross-secrets-backup-2026-08-28-2250` 788 KiB + `2026-08-29-0110` 8 KiB).

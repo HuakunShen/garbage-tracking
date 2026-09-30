@@ -1,0 +1,87 @@
+---
+title: garbage-tracking
+description: A community-maintained database of how software wastes your disk and memory — and an AI skill that turns it into safe, confirmed cleanup.
+---
+
+**One dossier per App, two dimensions: disk and memory.** Software does not only leave garbage on disk — caches that never shrink, versions that pile up, logs nobody reads — it also parks resident processes and helper armies in your memory. This database documents both with measured evidence, and ships an installable skill so any AI assistant can check your machine against it.
+
+<Cards>
+  <Card
+    title="App Database"
+    href="./apps"
+    description="20 dossiers · 114 disk issues · 11 memory issues · ≈244 GB reclaimable on the reference machine"
+  >
+    Browse every tracked App, its measured paths, and its cleanup tiers.
+  </Card>
+  <Card title="Contribute" href="./contribute" description="Evidence first, then an entry">
+    Add your OS, your software, your measurements — one PR, one App.
+  </Card>
+  <Card
+    title="GitHub"
+    href="https://github.com/HuakunShen/garbage-tracking"
+    description="The repo is the source of truth"
+  >
+    The whole database lives as Markdown next to this site's source.
+  </Card>
+</Cards>
+
+## Install the garbage-tracker skill
+
+The skill teaches your AI assistant to find the software installed on your machine, look each one up in this database, measure the damage with `du` / `spacelens` / `ps`, and clean up **only after confirming with you**.
+
+### 1. Clone the repository
+
+```bash
+git clone https://github.com/HuakunShen/garbage-tracking.git
+```
+
+### 2. Copy the skill into your agent's skills directory
+
+```bash
+cp -r garbage-tracking/skills/garbage-tracker ~/.agents/skills/
+```
+
+| Agent | Skills directory |
+| ----- | ---------------- |
+| ZCode and agents following the `.agents` convention | `~/.agents/skills/` |
+| Claude Code | `~/.claude/skills/` |
+| Anything else | wherever your agent loads `SKILL.md` folders from |
+
+### 3. Ask your AI to run a check
+
+```text
+Use the garbage-tracker skill: check my disk for known garbage,
+then tell me what my memory usage says about resident offenders.
+```
+
+<Callout title="Nothing is deleted without you">
+  The skill reports sizes and classifies every path into **Safe / Caution / Do not delete**, then waits for your explicit confirmation per item. User data is never proposed for deletion.
+</Callout>
+
+## What gets tracked
+
+- **Disk issues** — per-OS tables with measured sizes: version pile-ups, unbounded caches, logs, duplicate runtimes, leftover SDKs. macOS is measured today; Windows and Linux sections await community evidence.
+- **Memory issues** — resident bloat, per-session process armies, helper abuse, leaks — with the process tree that proves it.
+- **Cleanup recommendations** — every path sorted into **Safe / Caution / Do not delete**, with the mechanism that created it.
+- **Upstream status** — official cleanup options and known issues, so pressure goes back to the vendors.
+
+## Where the numbers come from
+
+Every entry is **evidence-first**: sizes come from `du` / `spacelens` on a real machine, memory numbers from `ps`, and each dossier links its raw evidence file with a measurement date. Anything unmeasured is marked unverified rather than guessed.
+
+## Start with the heavy hitters
+
+<Cards>
+  <Card title="ChatGPT / Codex" href="./apps/chatgpt-codex" description="≈113 GB reclaimable">
+    Agent worktrees, MCP process armies, caches that triple in days.
+  </Card>
+  <Card title="uv" href="./apps/uv" description="36 GB">
+    A Python package cache with no upper bound.
+  </Card>
+  <Card title="npm" href="./apps/npm" description="≈32 GB">
+    `_cacache` and `_npx` that only ever grow.
+  </Card>
+  <Card title="All 20 dossiers" href="./apps" description="The full database">
+    Sorted by category in the sidebar.
+  </Card>
+</Cards>

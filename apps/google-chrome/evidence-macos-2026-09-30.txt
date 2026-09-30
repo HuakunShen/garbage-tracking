@@ -1,0 +1,5 @@
+Google Chrome evidence sources (macOS, 2026-09-30)
+
+- Scan evidence (JSON): GoogleUpdater/crx_cache 745M, Caches/Google 1.2G, Chrome Default/Service Worker 1.3G, DriveFS 992M; dual-version frameworks 153.0.8010.53 (712M, reclaimable) / 154.0.8037.58 (714M, current) and the "719M (9/27) → 1.4G" growth record.
+- Research files: part3-applications.md section 1 (2026-09-27 `du -sh` measured `/Applications/Google Chrome.app` at 719M, a single version at the time); part2-library.md section 1 (Application Support/Google 1.4G, Caches/Google 817M, 2026-09-27; also notes that `Google/Chrome` was denied by TCC and could not be entered at the time — readable at this re-check).
+- On-machine re-check (2026-09-30, all read-only): `du -sh` measured crx_cache 745M, Caches/Google 1.2G, Service Worker 1.3G, DriveFS 4.4G (drilldown: content_cache 3.6G + two SQLite sets + WAL), Chrome profile 3.8G (Default 3.1G), dual versions 712M/714M, .app total 1.4G; `ls -la` confirmed 153 and 154 coexist under Versions/ with `Current → 154.0.8037.58`; `ps -axo rss=,comm=` measured 17 processes / 2.37 GB RSS (10 Renderers 1,597 MB, 5 helpers 443 MB, main process 378 MB, crashpad 7 MB).

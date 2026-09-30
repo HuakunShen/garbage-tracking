@@ -1,0 +1,6 @@
+ZCode evidence sources (macOS, 2026-09-30)
+
+- On-machine scan (2026-09-30): `du -sh` measured every path in the table above (`~/.zcode` totals 3.6G; embedded-browser Cache 819M + Code Cache 343M; both updater files 243,937,593 B).
+- `ls` spot checks: `~/.zcode/cli/db/db.sqlite` 1.1G; `v2/logs` 14 per-day files (largest 59M); `computer-use` dev 124M + production 125M; checkpoints with 6 hash directories.
+- `ps -axo pid,ppid,rss,etime,comm` + `top -l 1 -o mem` (2026-09-30): ZCode whole tree 27 processes ≈4.3 GiB RSS; 6 top-level zcode-cli under host pid 1416; 3 zcode-node-repl-mcp; 2 session-specific Electron helpers.
+- Research documents: the ZCode memory-audit note on the process-tree breakdown of three sessions (2026-09-28: 3 sessions / 44 processes / 6.22 GB footprint, GPU footprint 1.10 GB vs RSS 89 MB, Vorssaint responsibility group reproduced 12.95–15.23 GB) in the external AI-resource-analysis research project (research note 08; its on-disk filename is in Chinese); `research/memory-lifecycle-20260928/public-evidence-20260928.md` (public evidence: FAQ has only cli/exec cleanup entries, the issues section is access-restricted/empty, GitHub API 0 results); `research/part2-library.md` (ZCode Application Support 1.2G and embedded browser cache 1.1G counted into the ledger).

@@ -1,0 +1,5 @@
+Yarn (Berry) on-machine scan evidence (macOS, 2026-09-30)
+
+- Scan JSON: `/Users/hk/.yarn/berry` 3.4 GB; "the 3.43 GiB global package cache only grows and never shrinks, and together with npm/_cacache and the pnpm store (~/.pnpm-store-local 868M) forms three coexisting JS package caches".
+- Spot-check re-verification (2026-09-30, `du -sk ~/.yarn/berry/cache ~/.yarn/berry/metadata`): cache 3,254,380 KiB (3.10 GiB) + metadata 339,496 KiB (331.5 MiB) = 3,593,876 KiB (3.43 GiB), matching the scan value; `du -sh ~/.yarn` = 3.4G.
+- Detail: `find ~/.yarn/berry/cache -type f | wc -l` = 4,240 zips; deduplicated package names (`ls | sed 's/-npm-.*//' | sort -u | wc -l`) = 2,652; `du -ch ~/.yarn/berry/cache/typescript-npm-*` = 293 MB / 9 versions (4.9.4 → 6.0.3).
